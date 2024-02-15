@@ -1,5 +1,12 @@
 # G7TrucoGame
 
+## How build the project using QT:
+
+Follow this instructions:
+https://doc.qt.io/qt-6/get-and-install-qt.html
+
+Open the Project (CMakeLists.txt) in Qt Creator
+
 ## Descrição do Projeto
 
 Neste projeto final, você deve criar um jogo de Truco em C++ que incorpora e demonstra de forma abrangente os princípios da Programação Orientada a Objetos (OO). O jogo de Truco deve ser totalmente funcional, com suporte para dois jogadores humanos e implementar todas as regras do jogo de Truco.
