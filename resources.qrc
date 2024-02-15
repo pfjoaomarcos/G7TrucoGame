@@ -1,0 +1,46 @@
+<RCC>
+    <qresource prefix="/mainview">
+        <file>Resources/BackgroundImage.png</file>
+        <file>Resources/2_copas.jpg</file>
+        <file>Resources/2_espadas.jpg</file>
+        <file>Resources/2_ouros.jpg</file>
+        <file>Resources/2_paus.jpg</file>
+        <file>Resources/3_copas.jpg</file>
+        <file>Resources/3_espadas.jpg</file>
+        <file>Resources/3_ouros.jpg</file>
+        <file>Resources/3_paus.jpg</file>
+        <file>Resources/4_copas.jpg</file>
+        <file>Resources/4_espadas.jpg</file>
+        <file>Resources/4_ouros.jpg</file>
+        <file>Resources/4_paus.jpg</file>
+        <file>Resources/5_copas.jpg</file>
+        <file>Resources/5_espadas.jpg</file>
+        <file>Resources/5_ouros.jpg</file>
+        <file>Resources/5_paus.jpg</file>
+        <file>Resources/6_copas.jpg</file>
+        <file>Resources/6_espadas.jpg</file>
+        <file>Resources/6_ouros.jpg</file>
+        <file>Resources/6_paus.jpg</file>
+        <file>Resources/7_copas.jpg</file>
+        <file>Resources/7_espadas.jpg</file>
+        <file>Resources/7_ouros.jpg</file>
+        <file>Resources/7_paus.jpg</file>
+        <file>Resources/A_Copas.jpg</file>
+        <file>Resources/A_espadas.jpg</file>
+        <file>Resources/A_ouros.jpg</file>
+        <file>Resources/A_paus.jpg</file>
+        <file>Resources/back.jpg</file>
+        <file>Resources/J_copas.jpg</file>
+        <file>Resources/J_espadas.jpg</file>
+        <file>Resources/J_ouros.jpg</file>
+        <file>Resources/J_paus.jpg</file>
+        <file>Resources/K_copas.jpg</file>
+        <file>Resources/K_espadas.jpg</file>
+        <file>Resources/K_ouros.jpg</file>
+        <file>Resources/K_paus.jpg</file>
+        <file>Resources/Q_copas.jpg</file>
+        <file>Resources/Q_espadas.jpg</file>
+        <file>Resources/Q_ouros.jpg</file>
+        <file>Resources/Q_paus.jpg</file>
+    </qresource>
+</RCC>
