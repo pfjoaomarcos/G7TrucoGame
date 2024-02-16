@@ -429,6 +429,10 @@ void GameView::JogadoresCorreram(){
     QMessageBox::information(this,"Correram","Os Adversarios correram do truco");
 }
 
+void GameView::JogadoresAceitaram(){
+    QMessageBox::information(this,"Aceitaram","Os Adversarios aceitaram o pedido de truco");
+}
+
 void GameView::on_pushButton_2_clicked()
 {
     if(_truco == false){
@@ -440,7 +444,7 @@ void GameView::on_pushButton_2_clicked()
 void GameView::mostraValorTruco(unsigned int _valor){
     QFont helvetica("Times",18);
     ui->lineEdit_9->setFont(helvetica);
-    ui->lineEdit_9->setText(QString::number(_valor + 3));
+    ui->lineEdit_9->setText(QString::number(_valor));
 }
 
 void GameView::acao(unsigned int pont){
