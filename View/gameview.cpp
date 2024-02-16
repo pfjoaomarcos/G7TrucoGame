@@ -67,7 +67,7 @@ void GameView::ia_chat_jogador(QLineEdit *lineEdit)
     while(true)
     {
         //Aguarda um tempo aleatoriamente antes de escrever mensagens no chat
-        int seconds = get_random_int(3, 15);
+        int seconds = get_random_int(5, 20);
         std::this_thread::sleep_for (std::chrono::seconds(seconds));
 
         int message_number = get_random_int(0, 18);
@@ -546,11 +546,14 @@ void GameView::on_pushButton_clicked()
     QApplication::quit();
 }
 
+// Utiliza mecanismo de mutual exclusion pra escrita segura no chat por parte das threads
 void GameView::send_message_to_chat(const char* message)
 {
     mtx_chat.lock();
+
     stringList.append(message);
     model->setStringList(stringList);
+
     mtx_chat.unlock();
 }
 

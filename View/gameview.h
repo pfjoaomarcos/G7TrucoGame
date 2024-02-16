@@ -93,7 +93,7 @@ protected:
                                  "Tá jogando muito mal, tá parecendo meu primo!",
                                  "Essa mão tá mais fácil que tirar doce de criança!",
                                  "Desistiu? Já tava na hora!",
-                                 "Ganhei de lavada!",,
+                                 "Ganhei de lavada!",
                                  "Foi por pouco, da próxima vez não escapa!",
                                  "Chupa essa manga!",
                                  "Quem mandou duvidar de mim?",

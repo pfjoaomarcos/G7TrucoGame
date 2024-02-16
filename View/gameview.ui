@@ -262,7 +262,7 @@ color: rgb(255, 255, 255);</string>
          </font>
         </property>
         <property name="readOnly">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -325,7 +325,7 @@ color: rgb(255, 255, 255);</string>
          <string notr="true"/>
         </property>
         <property name="readOnly">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -394,7 +394,7 @@ color: rgb(255, 255, 255);</string>
          <bool>false</bool>
         </property>
         <property name="readOnly">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
