@@ -42,7 +42,8 @@ public:
     void jogadorGanhouRodada(CardModel carta,unsigned int pos);
     void JogadorGanhouTurno(unsigned int pos);
     void JogadoresCorreram();
-    void mostraValorTruco(unsigned int _valor = 0);
+    void JogadoresAceitaram();
+    void mostraValorTruco(unsigned int _valor = 1);
     void acao(unsigned int pont);
     void rodadaAsCegas(std::vector<CardModel> mao);
     void fimDeJogo(unsigned int pos);
