@@ -17,7 +17,7 @@ GameView::GameView(QWidget *parent, QString n_name, unsigned int n_jogadores) :
     QBrush green(Qt::darkGreen);
     jogo_scene->setBackgroundBrush(green);
     ui->graphicsView->setScene(jogo_scene);
-
+    ui->listViewChat->setModel(model);
 }
 
 GameView::~GameView()
@@ -35,7 +35,9 @@ void GameView::iniciaScene(){
         ui->lineEdit_3->setText(_jogador);
         ui->lineEdit_4->setText("Computer 3");
 
-
+        std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit).detach();
+        std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit_2).detach();
+        std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit_4).detach();
 
         ui->lineEdit_5->setText("0");
         ui->lineEdit_6->setText("0");
@@ -48,15 +50,36 @@ void GameView::iniciaScene(){
         ui->lineEdit_3->setDisabled(true);
         ui->lineEdit_4->setDisabled(true);
 
+        std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit).detach();
+
         ui->lineEdit_5->setText("0");
         ui->lineEdit_6->setText("0");
 
         ui->lineEdit_7->setDisabled(true);
         ui->lineEdit_8->setDisabled(true);
     }
+}
 
+void GameView::ia_chat_jogador(QLineEdit *lineEdit)
+{
+    while(true)
+    {
+        int seconds = get_random_int(3, 15);
+        std::this_thread::sleep_for (std::chrono::seconds(seconds));
 
+        int message_number = get_random_int(0, 18);
 
+        std::string str = lineEdit->text().toStdString() + ": " + expressoes[message_number];
+        send_message_to_chat(str.c_str());
+    }
+}
+
+int GameView::get_random_int(int first, int last)
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(first, last);
+    return dis(gen);
 }
 
 void GameView::setPontuacao(QString pont, std::size_t pos){
@@ -519,3 +542,17 @@ void GameView::on_pushButton_clicked()
     QApplication::quit();
 }
 
+void GameView::send_message_to_chat(const char* message)
+{
+    mtx_chat.lock();
+    stringList.append(message);
+    model->setStringList(stringList);
+    mtx_chat.unlock();
+}
+
+void GameView::on_lineEditChat_returnPressed()
+{
+    std::string str = "Eu: " + ui->lineEditChat->text().toStdString();
+    send_message_to_chat(str.c_str());
+    ui->lineEditChat->clear();
+}

@@ -7,6 +7,10 @@
 #include <QGraphicsScene>
 #include <QMessageBox>
 #include <vector>
+#include <mutex>
+#include <thread>
+#include <chrono>
+#include <random>
 #include <QEventLoop>
 #include "cardview.h"
 #include "actionview.h"
@@ -49,11 +53,16 @@ public:
     void fimDeJogo(unsigned int pos);
     void jogadoresMaode11();
     void JogadoresAsCegas();
+    void send_message_to_chat(const char* message);
+    void ia_chat_jogador(QLineEdit *lineEdit);
+    int get_random_int(int first, int last);
 
 private slots:
 
     void on_pushButton_2_clicked();
     void on_pushButton_clicked();
+
+    void on_lineEditChat_returnPressed();
 
 protected:
     Ui::GameView *ui;
@@ -69,6 +78,31 @@ protected:
     ActionView *mao11;
     unsigned int numero_jogador;
     bool _truco;
+    QStringListModel *model = new QStringListModel(this);
+    QStringList stringList;
+    std::mutex mtx_chat;
+
+    std::string expressoes[19] = {
+                                 "Preparem-se para perder!",
+                                 "Hoje ├® dia de humilhar!",
+                                 "Truco ├® pra quem sabe, e eu sei!",
+                                 "Cuidado com a minha m├úo, ├® quente!",
+                                 "Esse truco ├® meu, pode ir preparando a carteira!",
+                                 "Essa carta t├í cheirando a derrota!",
+                                 "Cad├¬ o truco agora, hein?",
+                                 "T├í jogando muito mal, t├í parecendo meu primo!",
+                                 "Essa m├úo t├í mais f├ícil que tirar doce de crian├ºa!",
+                                 "Desistiu? J├í tava na hora!",
+                                 "Ganhei de lavada!",
+                                 "Foi por pouco, da pr├│xima vez n├úo escapa!",
+                                 "Chupa essa manga!",
+                                 "Quem mandou duvidar de mim?",
+                                 "Truco ├® comigo mesmo, aprendam!",
+                                 "Essa foi s├│ a primeira, ainda tem mais!",
+                                 "Voc├¬s n├úo s├úo p├íreo para mim!",
+                                 "Melhor desistir agora, antes que a humilha├º├úo seja maior!",
+                                 "Essa partida foi s├│ um aperitivo, o prato principal vem agora!"
+    };
 };
 
 #endif // GAMEVIEW_H

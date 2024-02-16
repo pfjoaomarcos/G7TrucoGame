@@ -437,6 +437,12 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
+    <item row="2" column="0">
+     <widget class="QListView" name="listViewChat"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="lineEditChat"/>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
