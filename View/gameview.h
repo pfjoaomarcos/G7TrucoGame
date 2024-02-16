@@ -7,6 +7,10 @@
 #include <QGraphicsScene>
 #include <QMessageBox>
 #include <vector>
+#include <mutex>
+#include <thread>
+#include <chrono>
+#include <random>
 #include <QEventLoop>
 #include "cardview.h"
 #include "actionview.h"
@@ -49,11 +53,16 @@ public:
     void fimDeJogo(unsigned int pos);
     void jogadoresMaode11();
     void JogadoresAsCegas();
+    void send_message_to_chat(const char* message);
+    void ia_chat_jogador(QLineEdit *lineEdit);
+    int get_random_int(int first, int last);
 
 private slots:
 
     void on_pushButton_2_clicked();
     void on_pushButton_clicked();
+
+    void on_lineEditChat_returnPressed();
 
 protected:
     Ui::GameView *ui;
@@ -69,6 +78,31 @@ protected:
     ActionView *mao11;
     unsigned int numero_jogador;
     bool _truco;
+    QStringListModel *model = new QStringListModel(this);
+    QStringList stringList;
+    std::mutex mtx_chat;
+
+    std::string expressoes[19] = {
+                                 "Preparem-se para perder!",
+                                 "Hoje é dia de humilhar!",
+                                 "Truco é pra quem sabe, e eu sei!",
+                                 "Cuidado com a minha mão, é quente!",
+                                 "Esse truco é meu, pode ir preparando a carteira!",
+                                 "Essa carta tá cheirando a derrota!",
+                                 "Cadê o truco agora, hein?",
+                                 "Tá jogando muito mal, tá parecendo meu primo!",
+                                 "Essa mão tá mais fácil que tirar doce de criança!",
+                                 "Desistiu? Já tava na hora!",
+                                 "Ganhei de lavada!",
+                                 "Foi por pouco, da próxima vez não escapa!",
+                                 "Chupa essa manga!",
+                                 "Quem mandou duvidar de mim?",
+                                 "Truco é comigo mesmo, aprendam!",
+                                 "Essa foi só a primeira, ainda tem mais!",
+                                 "Vocês não são páreo para mim!",
+                                 "Melhor desistir agora, antes que a humilhação seja maior!",
+                                 "Essa partida foi só um aperitivo, o prato principal vem agora!"
+    };
 };
 
 #endif // GAMEVIEW_H
