@@ -35,6 +35,7 @@ void GameView::iniciaScene(){
         ui->lineEdit_3->setText(_jogador);
         ui->lineEdit_4->setText("Computer 3");
 
+        //Cria uma thread para cada bot, para escreverem mensagens no chat
         std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit).detach();
         std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit_2).detach();
         std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit_4).detach();
@@ -50,6 +51,7 @@ void GameView::iniciaScene(){
         ui->lineEdit_3->setDisabled(true);
         ui->lineEdit_4->setDisabled(true);
 
+        //Cria uma thread para cada bot, para escreverem mensagens no chat
         std::thread(&GameView::ia_chat_jogador, this, ui->lineEdit).detach();
 
         ui->lineEdit_5->setText("0");
@@ -64,11 +66,13 @@ void GameView::ia_chat_jogador(QLineEdit *lineEdit)
 {
     while(true)
     {
+        //Aguarda um tempo aleatoriamente antes de escrever mensagens no chat
         int seconds = get_random_int(3, 15);
         std::this_thread::sleep_for (std::chrono::seconds(seconds));
 
         int message_number = get_random_int(0, 18);
 
+        //Escreve uma mensagem aleatoria no chat
         std::string str = lineEdit->text().toStdString() + ": " + expressoes[message_number];
         send_message_to_chat(str.c_str());
     }
