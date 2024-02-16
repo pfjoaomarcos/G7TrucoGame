@@ -4,7 +4,7 @@ PlayTrucoController::PlayTrucoController(GameRulesModel *regra, std::vector<std:
     gameScreen{_interface}{
 
     _truco = false;
-    _valor_truco = 0;
+    _valor_truco = 1;
 
     _jog_atual = _regra->jogador_comeca();
     carta_ganhando = 0;
@@ -289,7 +289,7 @@ unsigned int PlayTrucoController::jogador_vencedor(){
 }
 
 void PlayTrucoController::joga_jogador_posicao0_11(){
-    gameScreen->mostraValorTruco();
+    gameScreen->mostraValorTruco(valor_truco());
     gameScreen->mostraMao();
     gameScreen->mostraMaooff();
     int _carta = gameScreen->cartaSelecionada();
@@ -419,7 +419,7 @@ void PlayTrucoController::comeca_novo_turno(){
     _turno = true;
     _cond_rodada = true;
     _truco = false;
-    _valor_truco = 0;
+    _valor_truco = 1;
     _rodada = 0;
 
     _regra->jogador_comeca_turno(_regra->jogador_comeca() +1);
@@ -558,7 +558,7 @@ void PlayTrucoController::fim_rodada(std::size_t _jogador_ganhou){
 
 
 void PlayTrucoController::joga_jogador_posicao_0(){
-    gameScreen->mostraValorTruco();
+    gameScreen->mostraValorTruco(valor_truco());
     if(posicao_jogador_atual() == jogador_comeca() || rodada() == 0){
         gameScreen->mostraMaooff();
     }
@@ -570,9 +570,10 @@ void PlayTrucoController::joga_jogador_posicao_0(){
 
     if((gameScreen->statusTruco() && verifica_truco(posicao_jogador_atual()) == true)){
         gameScreen->setTrucoFalse();
+        gameScreen->JogadoresAceitaram();
+        pede_truco(posicao_jogador_atual());
         gameScreen->mostraValorTruco(valor_truco());
 
-        pede_truco(posicao_jogador_atual());
         if(posicao_jogador_atual() == jogador_comeca()){
             joga_jogador_comeca();
         }
