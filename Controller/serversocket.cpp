@@ -2,7 +2,7 @@
 
 ServerSocket::ServerSocket() {}
 
-bool ServerSocket::start_server()
+bool ServerSocket::start_server(PCSTR ip, PCSTR port)
 {
     // Initialize Winsock
     WSADATA wsaData;
@@ -20,10 +20,6 @@ bool ServerSocket::start_server()
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
-    //TODO
-    PCSTR ip = "127.0.0.1";
-    PCSTR port = "1";
-
     // Resolve the local address and port to be used by the server
     iResult = getaddrinfo(ip, port, &hints, &result);
     if (iResult != 0)
@@ -35,6 +31,7 @@ bool ServerSocket::start_server()
     SOCKET server_socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
     if (server_socket == INVALID_SOCKET)
     {
+        freeaddrinfo(result);
         return false;
     }
 
@@ -42,6 +39,7 @@ bool ServerSocket::start_server()
     iResult = bind(server_socket, result->ai_addr, (int)result->ai_addrlen);
     if (iResult == SOCKET_ERROR)
     {
+        freeaddrinfo(result);
         return false;
     }
 

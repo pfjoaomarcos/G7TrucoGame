@@ -42,6 +42,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Controller/rulescontroller.h Controller/rulescontroller.cpp
         Controller/serversocket.h Controller/serversocket.cpp
         View/serverview.h View/serverview.cpp View/serverview.ui
+        Controller/clientsocket.h Controller/clientsocket.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

@@ -17,8 +17,6 @@ private:
         struct sockaddr_in address;
     };
 
-    std::vector<ClientData> clients_data;
-
     std::mutex _mtx_clients_data;
 
     std::queue<char*> clients_messages;
@@ -29,12 +27,12 @@ private:
 
     void receive_data(SOCKET client_socket);
 
-    //TODO implemente get message
-
 public:
     ServerSocket();
 
-    bool start_server();
+    std::vector<ClientData> clients_data;
+
+    bool start_server(PCSTR ip = "127.0.0.1", PCSTR port = "1");
 
     void send_message_to_clients(char* message);
 
