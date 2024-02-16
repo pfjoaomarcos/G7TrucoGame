@@ -27,6 +27,10 @@ void MainView::on_pushButton_3_clicked()
     QApplication::quit();
 }
 
+//TODO
+// Foi implementado as classes Server Socket (Controller/serversocket) e Client Socket (Controller/clientsocket),
+// as classes estão em funcionamento e 4 players conseguem se conectarem via rede local perfeitamente,
+// faltou relacionar as regras de negocio do jogo com os sockets
 void MainView::on_pushButton_5_clicked()
 {
     ServerView ipconfig;
@@ -34,6 +38,7 @@ void MainView::on_pushButton_5_clicked()
     ipconfig.exec();
 }
 
+//TODO
 void MainView::on_pushButton_6_clicked()
 {
     ServerView ipconfig;
