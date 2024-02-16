@@ -85,6 +85,7 @@ void ServerSocket::receive_data(SOCKET client_socket)
 {
     char buffer[1024];
 
+    //TODO improve
     while (true)
     {
         int  amountReceived = recv(client_socket, buffer, 1023, 0);
@@ -92,25 +93,23 @@ void ServerSocket::receive_data(SOCKET client_socket)
         if (amountReceived > 0)
         {
             buffer[amountReceived] = 0;
-
-            /*wchar_t wtext[1024];
-                mbstowcs_s(wtext, buffer, strlen(buffer) + 1);
-                OutputDebugString(wtext);*/
-
-            //                size_t size = strlen(buffer) + 1;
-            //                wchar_t* portName = new wchar_t[size];
-            //                size_t outSize;
-            //                mbstowcs_s(&outSize, portName, size, buffer, size - 1);
-            //OutputDebugString(portName);
-
-
-            //sendReceivedMessageToTheOtherClients(buffer, socketFD);
-            send(client_socket, buffer, amountReceived, 0);
+            //send(client_socket, buffer, amountReceived, 0);
         }
+
+        //
+        clients_messages.push(buffer);
 
         if (amountReceived == 0)
             break;
     }
 
     closesocket(client_socket);
+}
+
+void ServerSocket::send_message_to_clients(char* message)
+{
+    for (ClientData& client : clients_data)
+    {
+        send(client.client_socket, message, strlen(message), 0);
+    }
 }
