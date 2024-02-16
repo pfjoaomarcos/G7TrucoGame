@@ -20,6 +20,7 @@ bool ServerSocket::start_server()
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
+    //TODO
     PCSTR ip = "127.0.0.1";
     PCSTR port = "1";
 
@@ -75,7 +76,9 @@ void ServerSocket::accept_connections(SOCKET server_socket)
         clientData->address = client_address;
         clientData->client_socket = client_socket;
 
+        _mtx_clients_data.lock();
         clients_data.push_back(*clientData);
+        _mtx_clients_data.unlock();
 
         std::thread(&ServerSocket::receive_data, this, client_socket).detach();
     }
@@ -85,22 +88,23 @@ void ServerSocket::receive_data(SOCKET client_socket)
 {
     char buffer[1024];
 
-    //TODO improve
     while (true)
     {
-        int  amountReceived = recv(client_socket, buffer, 1023, 0);
+        memset(buffer, 0, sizeof(buffer));
 
-        if (amountReceived > 0)
-        {
-            buffer[amountReceived] = 0;
-            //send(client_socket, buffer, amountReceived, 0);
-        }
+        int  amountReceived = recv(client_socket, buffer, sizeof(buffer), 0);
 
-        //
-        clients_messages.push(buffer);
-
-        if (amountReceived == 0)
+        if (amountReceived <= 0)
             break;
+
+        _mtx_clients_messages.lock();
+
+        char* buffer_copy = (char*)malloc(strlen(buffer) + 1);
+        memset(buffer_copy, 0, sizeof(buffer_copy));
+        strncpy (buffer_copy, buffer, sizeof(buffer_copy));
+        clients_messages.push(buffer_copy);
+
+        _mtx_clients_messages.unlock();
     }
 
     closesocket(client_socket);
@@ -112,4 +116,27 @@ void ServerSocket::send_message_to_clients(char* message)
     {
         send(client.client_socket, message, strlen(message), 0);
     }
+}
+
+void ServerSocket::send_message_to_a_client(char* message, SOCKET client_socket)
+{
+    send(client_socket, message, strlen(message), 0);
+}
+
+char* ServerSocket::get_message_from_queue()
+{
+    _mtx_clients_messages.lock();
+
+    if (clients_messages.empty())
+    {
+        _mtx_clients_messages.unlock();
+        return nullptr;
+    }
+
+    char* message = clients_messages.front();
+    clients_messages.pop();
+
+    _mtx_clients_messages.unlock();
+
+    return message;
 }
