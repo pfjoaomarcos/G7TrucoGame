@@ -29,7 +29,7 @@ void MainView::on_pushButton_3_clicked()
 
 //TODO
 // Foi implementado as classes Server Socket (Controller/serversocket) e Client Socket (Controller/clientsocket),
-// as classes estão em funcionamento e 4 players conseguem se conectarem via rede local perfeitamente,
+// as classes multithreading estão em funcionamento e 4 players conseguem se conectar via rede local perfeitamente,
 // faltou relacionar as regras de negocio do jogo com os sockets
 void MainView::on_pushButton_5_clicked()
 {

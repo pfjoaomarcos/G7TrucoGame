@@ -4,7 +4,7 @@ ClientSocket::ClientSocket() {}
 
 bool ClientSocket::connect_to_server(PCSTR ip, PCSTR port)
 {
-    // Initialize Winsock
+    // Inicializa o Winsock
     WSADATA wsaData;
     int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if (iResult == INVALID_SOCKET)
@@ -20,14 +20,14 @@ bool ClientSocket::connect_to_server(PCSTR ip, PCSTR port)
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
-    // Resolve the local address and port to be used by the server
+    // Resolve o ip e porta a ser usado pelo server
     iResult = getaddrinfo(ip, port, &hints, &result);
     if (iResult != 0)
     {
         return false;
     }
 
-    // Create a SOCKET for the server to listen for client connections
+    // Cria o socket para conectar ao server
     SOCKET server_socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
     if (server_socket == INVALID_SOCKET)
     {
@@ -37,7 +37,7 @@ bool ClientSocket::connect_to_server(PCSTR ip, PCSTR port)
 
     _server_socket = server_socket;
 
-    // Connect to server.
+    // Connecta ao server
     iResult = connect(server_socket, result->ai_addr, (int)result->ai_addrlen);
     if (iResult == SOCKET_ERROR) {
         closesocket(server_socket);
@@ -47,11 +47,13 @@ bool ClientSocket::connect_to_server(PCSTR ip, PCSTR port)
 
     freeaddrinfo(result);
 
+    // Cria uma thread para ficar recebendo dados
     std::thread(&ClientSocket::receive_data, this, server_socket).detach();
 
     return true;
 }
 
+// Recebe as mensagens do server e adiciona a uma fila
 void ClientSocket::receive_data(SOCKET client_socket)
 {
     char buffer[1024];
@@ -78,11 +80,13 @@ void ClientSocket::receive_data(SOCKET client_socket)
     closesocket(client_socket);
 }
 
+// Manda mensagem para o server
 void ClientSocket::send_message(char* message)
 {
     send(_server_socket, message, strlen(message), 0);
 }
 
+// Pega a primeira mensagem da fila onde se acumula as mensagens recebidas do server
 char* ClientSocket::get_message_from_queue()
 {
     _mtx_server_messages.lock();

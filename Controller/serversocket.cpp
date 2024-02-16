@@ -4,7 +4,7 @@ ServerSocket::ServerSocket() {}
 
 bool ServerSocket::start_server(PCSTR ip, PCSTR port)
 {
-    // Initialize Winsock
+    // Inicializa o Winsock
     WSADATA wsaData;
     int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if (iResult == INVALID_SOCKET)
@@ -20,14 +20,14 @@ bool ServerSocket::start_server(PCSTR ip, PCSTR port)
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
-    // Resolve the local address and port to be used by the server
+    // Resolve o ip e porta a ser usado pelo server
     iResult = getaddrinfo(ip, port, &hints, &result);
     if (iResult != 0)
     {
         return false;
     }
 
-    // Create a SOCKET for the server to listen for client connections
+    // Cria o socket para escutar os clients
     SOCKET server_socket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
     if (server_socket == INVALID_SOCKET)
     {
@@ -35,7 +35,7 @@ bool ServerSocket::start_server(PCSTR ip, PCSTR port)
         return false;
     }
 
-    // Setup the TCP listening socket
+    // Configura o TCP listening socket
     iResult = bind(server_socket, result->ai_addr, (int)result->ai_addrlen);
     if (iResult == SOCKET_ERROR)
     {
@@ -50,11 +50,13 @@ bool ServerSocket::start_server(PCSTR ip, PCSTR port)
         return false;
     }
 
+    // Cria uma thread para ficar recebendo conexoes
     std::thread(&ServerSocket::accept_connections, this, server_socket).detach();
 
     return true;
 }
 
+// Aceita conexoes
 void ServerSocket::accept_connections(SOCKET server_socket)
 {
     while (true)
@@ -82,6 +84,7 @@ void ServerSocket::accept_connections(SOCKET server_socket)
     }
 }
 
+// Recebe dos dados do client e adiciona a uma fila
 void ServerSocket::receive_data(SOCKET client_socket)
 {
     char buffer[1024];
@@ -108,6 +111,7 @@ void ServerSocket::receive_data(SOCKET client_socket)
     closesocket(client_socket);
 }
 
+// Manda mensagem para todos os clients
 void ServerSocket::send_message_to_clients(char* message)
 {
     for (ClientData& client : clients_data)
@@ -116,11 +120,13 @@ void ServerSocket::send_message_to_clients(char* message)
     }
 }
 
+// Manda mensagem para um client especifico
 void ServerSocket::send_message_to_a_client(char* message, SOCKET client_socket)
 {
     send(client_socket, message, strlen(message), 0);
 }
 
+// Pega a primeira mensagem da fila onde se acumula as mensagens recebidas dos clients
 char* ServerSocket::get_message_from_queue()
 {
     _mtx_clients_messages.lock();
