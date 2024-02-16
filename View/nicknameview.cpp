@@ -26,8 +26,19 @@ void NicknameView::on_pushButton_clicked()
         QMessageBox::information(this, "Seu Nome:", _nome);
         close();
     }
+}
 
-
+void NicknameView::on_pushButton_2_clicked()
+{
+    _nome = ui->lineEdit->displayText();
+    _jogadores = 2;
+    if(_nome.size() == 0){
+        QMessageBox::warning(this,"Nome Incorreto","Nome Invalido");
+    }
+    else{
+        QMessageBox::information(this, "Seu Nome:", _nome);
+        close();
+    }
 }
 
 QString NicknameView::nome(){

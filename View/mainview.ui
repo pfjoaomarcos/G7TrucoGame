@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>610</height>
+    <height>675</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
     <width>800</width>
-    <height>610</height>
+    <height>900</height>
    </size>
   </property>
   <property name="palette">
@@ -95,7 +95,7 @@
     <property name="geometry">
      <rect>
       <x>-6</x>
-      <y>420</y>
+      <y>340</y>
       <width>811</width>
       <height>51</height>
      </rect>
@@ -109,14 +109,14 @@ color: rgb(0, 170, 0);
 font: 600 14pt &quot;Segoe UI&quot;;</string>
     </property>
     <property name="text">
-     <string>NEW GAME</string>
+     <string>NEW GAME OFFLINE</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>470</y>
+      <x>0</x>
+      <y>540</y>
       <width>811</width>
       <height>51</height>
      </rect>
@@ -132,8 +132,8 @@ font: 600 14pt &quot;Segoe UI&quot;;</string>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>520</y>
+      <x>0</x>
+      <y>590</y>
       <width>811</width>
       <height>51</height>
      </rect>
@@ -145,6 +145,57 @@ font: 600 14pt &quot;Segoe UI&quot;;</string>
     </property>
     <property name="text">
      <string>EXIT</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>390</y>
+      <width>811</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 600 14pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>LOAD OFFLINE GAME</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>440</y>
+      <width>811</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 600 14pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>CREATE SERVER NEW GAME</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>490</y>
+      <width>811</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+font: 600 14pt &quot;Segoe UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>JOIN CLIENT NEW GAME</string>
     </property>
    </widget>
   </widget>

@@ -5,6 +5,7 @@
 #include <QString>
 #include <QGraphicsScene>
 #include "nicknameview.h"
+#include "serverview.h"
 #include "gameview.h"
 #include "helpview.h"
 #include "../Controller/playtrucocontroller.h"
@@ -31,7 +32,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_3_clicked();
+
     void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
 
 private:
     std::vector<std::string> _jogadores;

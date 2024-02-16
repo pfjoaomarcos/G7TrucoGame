@@ -40,6 +40,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         View/cardview.h View/cardview.cpp View/cardview.ui
         Controller/playtrucocontroller.h Controller/playtrucocontroller.cpp
         Controller/rulescontroller.h Controller/rulescontroller.cpp
+        View/serverview.h View/serverview.cpp View/serverview.ui
 
     )
 # Define target properties for Android with Qt 6 as:
