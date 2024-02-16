@@ -1,5 +1,11 @@
 # G7TrucoGame
 
+## Grupo G7
+- Bruno Marcos Lima
+- João Marcos de Paiva Fernandes
+- Pedro Zandoná Pinese
+- Ramon Houssein Leão Paixão
+
 ## How build the project using QT:
 
 Follow this instructions:
@@ -103,4 +109,4 @@ Seu projeto será avaliado com base nos seguintes critérios:
 - A planilha com o link do projeto no Github deverá ser preenchida até a data de entregaapenas pelo líder da equipe.
 - A data da tag será checada para avaliar o momento da entrega.
 
-**Data de entrega: 26/01/2024 até 23h59.**
+**Data de entrega: 16/02/2024 até 23h59.**
