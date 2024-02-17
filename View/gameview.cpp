@@ -516,6 +516,8 @@ void GameView::JogadoresAsCegas(){
 
 void GameView::on_pushButton_clicked()
 {
-    QApplication::quit();
+    SaveView save;
+    save.setModal(true);
+    save.exec();
 }
 

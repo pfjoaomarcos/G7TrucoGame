@@ -10,6 +10,7 @@
 #include <QEventLoop>
 #include "cardview.h"
 #include "actionview.h"
+#include "saveview.h"
 
 namespace Ui {
 class GameView;
