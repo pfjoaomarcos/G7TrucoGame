@@ -5,6 +5,7 @@ MainView::MainView(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainView)
 {
+    save = new SaveController();
     ui->setupUi(this);
 }
 
@@ -24,7 +25,22 @@ void MainView::on_pushButton_4_clicked()
 
 void MainView::on_pushButton_3_clicked()
 {
-    QApplication::quit();
+    std::string name;
+    if (save->ThereIsALoad()){
+        _numero_jogadores = 4;
+        save->LoadGame(&name);
+        rule = new RulesController(_numero_jogadores,3,3,12,0,40);
+        _jogo = new GameView(this,QString::fromStdString(name),_numero_jogadores);
+        _jogadores.emplace_back((name));
+        _jogadores.emplace_back("Computer1");
+        _jogadores.emplace_back("Computer2");
+        _jogadores.emplace_back("Computer3");
+
+        PlayTrucoController game(rule,jogadores(),_jogo);
+        game.jogar();
+    }else {
+        on_pushButton_clicked();
+    }
 }
 
 void MainView::on_pushButton_5_clicked()
@@ -50,6 +66,7 @@ void MainView::on_pushButton_clicked()
     _numero_jogadores = nome.numero_jogadores();
 
     if(nome.nome().size() > 0){
+        save->SaveGame(nome.nome().toStdString());
         if(nome.numero_jogadores() == 4){
             rule = new RulesController(_numero_jogadores,3,3,12,0,40);
             _jogo = new GameView(this,nome.nome(),_numero_jogadores);

@@ -10,6 +10,7 @@
 #include "helpview.h"
 #include "../Controller/playtrucocontroller.h"
 #include "../Controller/rulescontroller.h"
+#include "../Controller/savecontroller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -50,5 +51,6 @@ private:
     QGraphicsRectItem *rect;
     QGraphicsPixmapItem *imagem;
     RulesController *rule;
+    SaveController *save;
 };
 #endif // MAINVIEW_H
