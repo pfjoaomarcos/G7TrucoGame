@@ -165,6 +165,9 @@ font: 600 14pt &quot;Segoe UI&quot;;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_5">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -182,6 +185,9 @@ font: 600 14pt &quot;Segoe UI&quot;;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_6">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -205,7 +211,7 @@ font: 600 14pt &quot;Segoe UI&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

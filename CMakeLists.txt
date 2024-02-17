@@ -40,8 +40,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         View/cardview.h View/cardview.cpp View/cardview.ui
         Controller/playtrucocontroller.h Controller/playtrucocontroller.cpp
         Controller/rulescontroller.h Controller/rulescontroller.cpp
+        Controller/serversocket.h Controller/serversocket.cpp
         View/serverview.h View/serverview.cpp View/serverview.ui
         Controller/savecontroller.h Controller/savecontroller.cpp
+        Controller/clientsocket.h Controller/clientsocket.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -66,7 +68,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(G7TrucoGame PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(G7TrucoGame PRIVATE Qt${QT_VERSION_MAJOR}::Widgets wsock32 ws2_32)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
