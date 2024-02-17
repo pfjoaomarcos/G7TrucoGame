@@ -6,6 +6,8 @@
 - Pedro Zandoná Pinese
 - Ramon Houssein Leão Paixão
 
+Os documentos de entrega se encontram na pasta Docs do repositório.
+
 ## How build the project using QT:
 
 Follow this instructions:
